@@ -158,6 +158,11 @@ set nojoinspaces
 
 " Text after this column is not highlighted
 set synmaxcol=100
+
+" Increment search
+set incsearch
+
+set wildmenu
 "}
 
 "{ Functions
