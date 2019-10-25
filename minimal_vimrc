@@ -273,10 +273,11 @@ augroup END
 
 " Display a message when the current file is not in utf-8 format.
 " Note that we need to use `unsilent` command here because of this issue:
-" https://github.com/vim/vim/issues/4379
+" https://github.com/vim/vim/issues/4379. For older Vim (version 7.4), the
+" help file are in gzip format, do not warn this.
 augroup non_utf8_file_warn
     autocmd!
-    autocmd BufRead * if &fileencoding != 'utf-8' && &filetype != 'help'
+    autocmd BufRead * if &fileencoding != 'utf-8' && expand('%:e') != 'gz'
                 \ | unsilent echomsg 'File not in UTF-8 format!' | endif
 augroup END
 
