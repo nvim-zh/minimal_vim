@@ -276,7 +276,7 @@ augroup END
 " https://github.com/vim/vim/issues/4379
 augroup non_utf8_file_warn
     autocmd!
-    autocmd BufRead * if &fileencoding != 'utf-8'
+    autocmd BufRead * if &fileencoding != 'utf-8' && &filetype != 'help'
                 \ | unsilent echomsg 'File not in UTF-8 format!' | endif
 augroup END
 
@@ -294,7 +294,7 @@ augroup END
 
 function! MyHighlights() abort
     " Highlight trailing spaces
-    match WarningMsg /\s\+$/
+    match Error /\s\+$/
     highlight clear
 
     " The following colors are taken from vim-gruvbox8,
@@ -599,8 +599,15 @@ let g:currentmode={
        \}
 
 set statusline=
-set statusline+=\ %{toupper(g:currentmode[mode()])}   " Current mode
-set statusline+=\|
+set statusline+=%#DiffAdd#
+" Show current mode
+set statusline+=\ %{toupper(g:currentmode[mode()])}
+set statusline+=%{&spell?'[SPELL]':''}
+set statusline+=%*
+
+set statusline+=%#WarningMsg#
+set statusline+=%{&paste?'[PASTE]':''}
+set statusline+=%*
 
 " Truncate line here
 set statusline+=\ %<
@@ -610,11 +617,6 @@ set statusline+=%f
 
 set statusline+=\ %{&modified?'[+]':''}
 set statusline+=%{&readonly?'[]':''}
-
-set statusline+=%{&spell?'[SPELL]':''}
-set statusline+=%#WarningMsg#
-set statusline+=%{&paste?'[PASTE]':''}
-set statusline+=%*
 
 " Separation point between left and right aligned items
 set statusline+=%=
@@ -633,11 +635,13 @@ set statusline+=%#WarningMsg#
 set statusline+=%{&bomb?'[BOM]':''}
 set statusline+=%*
 
+set statusline+=%#DiffAdd#
 " Location of cursor line
 set statusline+=\ [%l/%L\ %2p%%]
 
 " Column number
 set statusline+=\ col:%3c
+set statusline+=%*
 
 " Warning about trailing space
 set statusline+=%#WarningMsg#
