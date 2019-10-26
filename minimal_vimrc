@@ -176,7 +176,7 @@ set tildeop
 set nojoinspaces
 
 " Text after this column is not highlighted
-set synmaxcol=200
+set synmaxcol=100
 
 " Increment search
 set incsearch
@@ -467,100 +467,6 @@ nnoremap <silent> <leader><Space> :call StripTrailingWhitespaces()<CR>
 "}
 
 "{ UI settings
-if exists("&termguicolors")
-    " If we want to use true colors, we must a color scheme which support true
-    " colors, for example, https://github.com/sickill/vim-monokai
-    set notermguicolors
-endif
-set background=dark
-colorscheme desert
-
-let g:currentmode={
-       \ 'n'  : 'NORMAL ',
-       \ 'v'  : 'VISUAL ',
-       \ 'V'  : 'V·Line ',
-       \ '' : 'V·Block ',
-       \ 'i'  : 'INSERT ',
-       \ 'R'  : 'R ',
-       \ 'Rv' : 'V·Replace ',
-       \ 'c'  : 'Command ',
-       \}
-
-set statusline=
-set statusline+=%1*
-" Show current mode
-set statusline+=\ %{toupper(g:currentmode[mode()])}
-set statusline+=%{&spell?'[SPELL]':''}
-set statusline+=%*
-
-set statusline+=%#ErrorMsg#
-set statusline+=%{&paste?'[PASTE]':''}
-set statusline+=%*
-
-set statusline+=%2*
-" Truncate line here
-set statusline+=\ %<
-" File path, as typed or relative to current directory
-set statusline+=%f
-
-set statusline+=\ %{&modified?'[+]':''}
-set statusline+=%{&readonly?'[]':''}
-
-" Separation point between left and right aligned items
-set statusline+=%=
-
-set statusline+=%-5{&filetype!=#''?&filetype:'none'}
-
-" Encoding & Fileformat
-set statusline+=%#WarningMsg#
-set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
-set statusline+=%*
-
-set statusline+=%2*
-set statusline+=[%{&fileformat}]
-
-" Warning about byte order
-set statusline+=%#WarningMsg#
-set statusline+=%{&bomb?'[BOM]':''}
-set statusline+=%*
-
-set statusline+=%1*
-" Location of cursor line
-set statusline+=\ [%l/%L\ %2p%%]
-
-" Column number
-set statusline+=\ col:%3c
-set statusline+=%*
-
-" Warning about trailing space
-set statusline+=%#WarningMsg#
-set statusline+=%{StatuslineTrailingSpaceWarning()}
-set statusline+=%*
-
-"recalculate the trailing whitespace warning when idle, and after saving
-augroup check_trailing_space
-    autocmd!
-    autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-augroup END
-
-" Find trailing spaces
-function! StatuslineTrailingSpaceWarning()
-    if !exists("b:statusline_trailing_space_warning")
-
-        if !&modifiable
-            let b:statusline_trailing_space_warning = ''
-            return b:statusline_trailing_space_warning
-        endif
-
-        if search('\s\+$', 'nw') != 0
-            let b:statusline_trailing_space_warning = '[Trailing Space]'
-        else
-            let b:statusline_trailing_space_warning = ''
-        endif
-    endif
-    return b:statusline_trailing_space_warning
-endfunction
-
 augroup MyColors
     autocmd!
     autocmd ColorScheme * call MyHighlights()
@@ -677,6 +583,100 @@ function! MyHighlights() abort
     hi VisualMode ctermfg=208 ctermbg=234 cterm=reverse
     hi CommandMode ctermfg=175 ctermbg=234 cterm=reverse
     hi Warnings ctermfg=208 ctermbg=234 cterm=reverse
+endfunction
+
+if exists("&termguicolors")
+    " If we want to use true colors, we must a color scheme which support true
+    " colors, for example, https://github.com/sickill/vim-monokai
+    set notermguicolors
+endif
+set background=dark
+colorscheme desert
+
+let g:currentmode={
+       \ 'n'  : 'NORMAL ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ '' : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \}
+
+set statusline=
+set statusline+=%1*
+" Show current mode
+set statusline+=\ %{toupper(g:currentmode[mode()])}
+set statusline+=%{&spell?'[SPELL]':''}
+set statusline+=%*
+
+set statusline+=%#ErrorMsg#
+set statusline+=%{&paste?'[PASTE]':''}
+set statusline+=%*
+
+set statusline+=%2*
+" Truncate line here
+set statusline+=\ %<
+" File path, as typed or relative to current directory
+set statusline+=%f
+
+set statusline+=\ %{&modified?'[+]':''}
+set statusline+=%{&readonly?'[]':''}
+
+" Separation point between left and right aligned items
+set statusline+=%=
+
+set statusline+=%-5{&filetype!=#''?&filetype:'none'}
+
+" Encoding & Fileformat
+set statusline+=%#WarningMsg#
+set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
+set statusline+=%*
+
+set statusline+=%2*
+set statusline+=[%{&fileformat}]
+
+" Warning about byte order
+set statusline+=%#WarningMsg#
+set statusline+=%{&bomb?'[BOM]':''}
+set statusline+=%*
+
+set statusline+=%1*
+" Location of cursor line
+set statusline+=\ [%l/%L\ %2p%%]
+
+" Column number
+set statusline+=\ col:%3c
+set statusline+=%*
+
+" Warning about trailing space
+set statusline+=%#WarningMsg#
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+set statusline+=%*
+
+"recalculate the trailing whitespace warning when idle, and after saving
+augroup check_trailing_space
+    autocmd!
+    autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+augroup END
+
+" Find trailing spaces
+function! StatuslineTrailingSpaceWarning()
+    if !exists("b:statusline_trailing_space_warning")
+
+        if !&modifiable
+            let b:statusline_trailing_space_warning = ''
+            return b:statusline_trailing_space_warning
+        endif
+
+        if search('\s\+$', 'nw') != 0
+            let b:statusline_trailing_space_warning = '[Trailing Space]'
+        else
+            let b:statusline_trailing_space_warning = ''
+        endif
+    endif
+    return b:statusline_trailing_space_warning
 endfunction
 "}
 
