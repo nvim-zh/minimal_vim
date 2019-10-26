@@ -131,7 +131,15 @@ set autowrite
 set title
 set titlestring=%{hostname()}\ \ %{expand('%:p')}\ \ %{strftime('%Y-%m-%d\ %H:%M',getftime(expand('%')))}
 
-" Persistent undo even after you close a file and re-open it
+" Persistent undo even after you close a file and re-open it.
+" For vim, we need to set up an undodir so that $HOME is not cluttered with
+" undo files.
+if !has('nvim')
+    if !isdirectory($HOME . "/.local/vim/undo")
+        call mkdir($HOME . "/.local/vim/undo", "p", 0700)
+    endif
+    set undodir=~/.local/vim/undo
+endif
 set undofile
 
 " Completion behaviour
