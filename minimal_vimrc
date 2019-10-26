@@ -32,7 +32,7 @@ set splitbelow splitright
 set timeoutlen=500
 
 " For CursorHold events
-set updatetime=2000
+set updatetime=800
 
 " Clipboard settings, always use clipboard for all delete, yank, change, put
 " operation, see https://goo.gl/YAHBbJ
@@ -630,7 +630,7 @@ set statusline+=%f
 set statusline+=\ %{&modified?'[+]':''}
 set statusline+=%{&readonly?'[]':''}
 
-" Separation point between left and right aligned items
+" Separation point between left and right aligned items.
 set statusline+=%=
 
 set statusline+=%-5{&filetype!=#''?&filetype:'none'}
@@ -656,18 +656,19 @@ set statusline+=\ [%l/%L\ %2p%%]
 set statusline+=\ col:%3c
 set statusline+=%*
 
-" Warning about trailing space
+" Warning about trailing spaces.
 set statusline+=%#WarningMsg#
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 set statusline+=%*
 
-"recalculate the trailing whitespace warning when idle, and after saving
+" Recalculate the trailing whitespace warning when idle, and after saving.
 augroup check_trailing_space
     autocmd!
-    autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
+    autocmd CursorHold,BufWritePost * unlet! b:statusline_trailing_space_warning
+        \ | let &statusline=&statusline
 augroup END
 
-" Find trailing spaces
+" Find if trailing spaces exist.
 function! StatuslineTrailingSpaceWarning()
     if !exists("b:statusline_trailing_space_warning")
 
@@ -676,8 +677,9 @@ function! StatuslineTrailingSpaceWarning()
             return b:statusline_trailing_space_warning
         endif
 
-        if search('\s\+$', 'nw') != 0
-            let b:statusline_trailing_space_warning = '[Trailing Space]'
+        let l:line_num = search('\s\+$', 'nw')
+        if l:line_num != 0
+            let b:statusline_trailing_space_warning = ' [' . l:line_num . ']' . 'trailing space'
         else
             let b:statusline_trailing_space_warning = ''
         endif
