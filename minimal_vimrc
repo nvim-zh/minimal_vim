@@ -306,6 +306,11 @@ function! MyHighlights() abort
     match Error /\s\+$/
     highlight clear
 
+    " The following colors are taken from ayu_mirage vim-airline theme,
+    " link: https://github.com/vim-airline/vim-airline-themes/
+    hi User1 ctermfg=0 ctermbg=114
+    hi User2 ctermfg=114 ctermbg=0
+
     " The following colors are taken from vim-gruvbox8,
     " link: https://github.com/lifepillar/vim-gruvbox8
     hi Normal ctermfg=187 ctermbg=NONE cterm=NONE
@@ -590,7 +595,6 @@ colorscheme desert
 
 let g:currentmode={
        \ 'n'  : 'NORMAL ',
-       \ 'no' : 'N·Operator Pending ',
        \ 'v'  : 'VISUAL ',
        \ 'V'  : 'V·Line ',
        \ '' : 'V·Block ',
@@ -598,29 +602,22 @@ let g:currentmode={
        \ 'R'  : 'R ',
        \ 'Rv' : 'V·Replace ',
        \ 'c'  : 'Command ',
-       \ 'cv' : 'Vim Ex ',
-       \ 'ce' : 'Ex ',
-       \ 'r'  : 'Prompt ',
-       \ 'rm' : 'More ',
-       \ 'r?' : 'Confirm ',
-       \ '!'  : 'Shell ',
-       \ 't'  : 'Terminal '
        \}
 
 set statusline=
-set statusline+=%#DiffAdd#
+set statusline+=%1*
 " Show current mode
 set statusline+=\ %{toupper(g:currentmode[mode()])}
 set statusline+=%{&spell?'[SPELL]':''}
 set statusline+=%*
 
-set statusline+=%#WarningMsg#
+set statusline+=%#ErrorMsg#
 set statusline+=%{&paste?'[PASTE]':''}
 set statusline+=%*
 
+set statusline+=%2*
 " Truncate line here
 set statusline+=\ %<
-
 " File path, as typed or relative to current directory
 set statusline+=%f
 
@@ -637,6 +634,7 @@ set statusline+=%#WarningMsg#
 set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
 set statusline+=%*
 
+set statusline+=%2*
 set statusline+=[%{&fileformat}]
 
 " Warning about byte order
@@ -644,7 +642,7 @@ set statusline+=%#WarningMsg#
 set statusline+=%{&bomb?'[BOM]':''}
 set statusline+=%*
 
-set statusline+=%#DiffAdd#
+set statusline+=%1*
 " Location of cursor line
 set statusline+=\ [%l/%L\ %2p%%]
 
