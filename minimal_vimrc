@@ -295,6 +295,12 @@ augroup vimfile_setting
     \ foldexpr=VimFolds(v:lnum) foldtext=MyFoldText()
     \ keywordprg=:help formatoptions-=o formatoptions-=r
 augroup END
+
+augroup number_toggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &number | set relativenumber | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &number | set norelativenumber | endif
+augroup END
 "}
 
 "{ Custom key mappings
