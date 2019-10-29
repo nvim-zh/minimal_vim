@@ -1,4 +1,7 @@
 "{ Builtin options and settings
+" activate matchit plugin
+runtime! macros/matchit.vim
+
 if !has('nvim')
     " Cursor shapes
     let &t_SI = "\<esc>[6 q"
@@ -600,8 +603,6 @@ colorscheme desert
 " Highlight trailing spaces and leading tabs
 call matchadd('Warnings', '\s\+$')
 call matchadd('Warnings', '^\t\+')
-" match Error /\s\+$/
-" match Error /^\t\+/
 
 " statusline settings
 let g:currentmode={
