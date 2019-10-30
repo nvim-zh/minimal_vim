@@ -621,39 +621,35 @@ set statusline+=%1*
 " Show current mode
 set statusline+=\ %{toupper(g:currentmode[mode()])}
 set statusline+=%{&spell?'[SPELL]':''}
-set statusline+=%*
 
 set statusline+=%#Warnings#
 set statusline+=%{&paste?'[PASTE]':''}
-set statusline+=%*
 
 set statusline+=%2*
 " File path, as typed or relative to current directory
-set statusline+=\ %f
+set statusline+=\ %F
 
-set statusline+=\ %{&modified?'[+]':''}
-set statusline+=%{&readonly?'[]':''}
+set statusline+=%{&modified?'\ [+]':''}
+set statusline+=%{&readonly?'\ []':''}
 
 " Truncate line here
-set statusline+=\ %<
+set statusline+=%<
 
 " Separation point between left and right aligned items.
 set statusline+=%=
 
-set statusline+=%-5{&filetype!=#''?&filetype:'none'}
+set statusline+=%{&filetype!=#''?&filetype.'\ ':'none\ '}
 
 " Encoding & Fileformat
 set statusline+=%#Warnings#
 set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
-set statusline+=%*
 
 set statusline+=%2*
-set statusline+=[%{&fileformat}]%{PlainSpace()}
+set statusline+=%-7([%{&fileformat}]%)
 
 " Warning about byte order
 set statusline+=%#Warnings#
 set statusline+=%{&bomb?'[BOM]':''}
-set statusline+=%*
 
 set statusline+=%1*
 " Location of cursor line
@@ -661,16 +657,11 @@ set statusline+=[%l/%L\ %2p%%]
 
 " Column number
 set statusline+=\ col:%3c
-set statusline+=%*
 
 " Warning about trailing spaces.
 set statusline+=%#Warnings#
 set statusline+=%{StatuslineTrailingSpaceWarning()}
-set statusline+=%*
-
-set statusline+=%#Warnings#
 set statusline+=%{StatuslineTabWarning()}
-set statusline+=%*
 
 " Recalculate the trailing whitespace warning when idle, and after saving.
 augroup check_trailing_space
@@ -684,11 +675,6 @@ augroup check_mixed_tabs
     autocmd CursorHold,BufWritePost * unlet! b:statusline_tab_warning
         \ | let &statusline=&statusline
 augroup END
-
-" Return a plain space
-function! PlainSpace()
-    return ' '
-endfunction
 
 " Find if trailing spaces exist.
 function! StatuslineTrailingSpaceWarning()
