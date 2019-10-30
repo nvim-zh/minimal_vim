@@ -2,6 +2,9 @@
 " activate matchit plugin
 runtime! macros/matchit.vim
 
+" Activate man page plugin
+runtime! ftplugin/man.vim
+
 if !has('nvim')
     " Cursor shapes
     let &t_SI = "\<esc>[6 q"
