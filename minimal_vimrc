@@ -656,7 +656,7 @@ set statusline+=%{&bomb?'[BOM]':''}
 
 set statusline+=%1*
 " Location of cursor line
-set statusline+=[%l/%L\ %2p%%]
+set statusline+=[%l/%L]
 
 " Column number
 set statusline+=\ col:%3c
