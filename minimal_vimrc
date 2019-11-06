@@ -182,7 +182,7 @@ set tildeop
 set nojoinspaces
 
 " Text after this column is not highlighted
-set synmaxcol=100
+set synmaxcol=200
 
 " Increment search
 set incsearch
