@@ -1,12 +1,15 @@
-"{ Builtin options and settings
-" activate matchit plugin
+"{ Builtin optional plugins
+" Activate matchit plugin
 runtime! macros/matchit.vim
 
 " Activate man page plugin
 runtime! ftplugin/man.vim
+"}
 
+"{ Builtin options and settings
 if !has('nvim')
-    " Cursor shapes
+    " Change cursor shapes based on whether we are in insert mode,
+    " see https://vi.stackexchange.com/questions/9131/i-cant-switch-to-cursor-in-insert-mode
     let &t_SI = "\<esc>[6 q"
     let &t_EI = "\<esc>[2 q"
     if exists("&t_SR")
@@ -181,7 +184,7 @@ set tildeop
 set nojoinspaces
 
 " Text after this column is not highlighted
-set synmaxcol=200
+set synmaxcol=500
 
 " Increment search
 set incsearch
