@@ -5,7 +5,98 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/435b7a4/
+$	vimrc	/^xnoremap $ g_$/;"	m
+/	vimrc	/^vnoremap \/ :<C-U>call feedkeys('\/\\%>'.(line("'<")-1).'l\\%<'.(line("'>")+1)."l")<CR>$/;"	m
+0	vimrc	/^nnoremap <silent> 0 g0$/;"	m
+;	vimrc	/^nnoremap ; :$/;"	m
+;	vimrc	/^xnoremap ; :$/;"	m
+<	vimrc	/^xnoremap < <gv$/;"	m
+<C-H>	vimrc	/^nnoremap <C-H> :%s\/$/;"	m
+<C-H>	vimrc	/^xnoremap <C-H> :s\/$/;"	m
+<Down>	vimrc	/^inoremap <Down> <nop>$/;"	m
+<Down>	vimrc	/^nnoremap <Down> <nop>$/;"	m
+<F11>	vimrc	/^inoremap <silent> <F11> <C-O>:set spell!<cr>$/;"	m
+<F11>	vimrc	/^nnoremap <silent> <F11> :set spell!<cr>$/;"	m
+<Leader>hl	vimrc	/^nnoremap <silent><expr> <Leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls')."\\n"$/;"	m
+<Left>	vimrc	/^inoremap <Left> <nop>$/;"	m
+<Left>	vimrc	/^nnoremap <Left> <nop>$/;"	m
+<M-down>	vimrc	/^nnoremap <silent> <M-down> <C-w>j$/;"	m
+<M-h>	vimrc	/^nnoremap <silent> <M-h> <C-w><$/;"	m
+<M-j>	vimrc	/^nnoremap <silent> <M-j> <C-W>-$/;"	m
+<M-k>	vimrc	/^nnoremap <silent> <M-k> <C-W>+$/;"	m
+<M-l>	vimrc	/^nnoremap <silent> <M-l> <C-w>>$/;"	m
+<M-left>	vimrc	/^nnoremap <silent> <M-left> <C-w>h$/;"	m
+<M-right>	vimrc	/^nnoremap <silent> <M-right> <C-w>l$/;"	m
+<M-up>	vimrc	/^nnoremap <silent> <M-up> <C-w>k$/;"	m
+<Right>	vimrc	/^inoremap <Right> <nop>$/;"	m
+<Right>	vimrc	/^nnoremap <Right> <nop>$/;"	m
+<S-Tab>	vimrc	/^inoremap <S-Tab> <ESC><<i$/;"	m
+<Space><Space>	vimrc	/^nnoremap <silent> <Space><Space> a<Space><ESC>h$/;"	m
+<Tab>	vimrc	/^nnoremap <Tab> %$/;"	m
+<Up>	vimrc	/^inoremap <Up> <nop>$/;"	m
+<Up>	vimrc	/^nnoremap <Up> <nop>$/;"	m
+<c-t>	vimrc	/^inoremap <silent> <c-t> <Esc>b~lea$/;"	m
+<c-u>	vimrc	/^inoremap <silent> <c-u> <Esc>viwUea$/;"	m
+<cr>	vimrc	/^inoremap <expr> <cr> ((pumvisible())?("\\<C-Y>"):("\\<cr>"))$/;"	m
+<esc>	vimrc	/^inoremap <expr> <esc> ((pumvisible())?("\\<C-e>"):("\\<esc>"))$/;"	m
+<leader><Space>	vimrc	/^nnoremap <silent> <leader><Space> :call StripTrailingWhitespaces()<CR>$/;"	m
+<leader>P	vimrc	/^nnoremap <leader>P m`O<ESC>p``$/;"	m
+<leader>Q	vimrc	/^nnoremap <silent> <leader>Q :qa<CR>$/;"	m
+<leader>cd	vimrc	/^nnoremap <silent> <leader>cd :lcd %:p:h<CR>:pwd<CR>$/;"	m
+<leader>ev	vimrc	/^nnoremap <silent> <leader>ev :edit $MYVIMRC<cr>$/;"	m
+<leader>p	vimrc	/^nnoremap <leader>p m`o<ESC>p``$/;"	m
+<leader>q	vimrc	/^nnoremap <silent> <leader>q :x<CR>$/;"	m
+<leader>sv	vimrc	/^nnoremap <silent> <leader>sv :silent update $MYVIMRC <bar> source $MYVIMRC <bar>$/;"	m
+<leader>v	vimrc	/^nnoremap <leader>v `[V`]$/;"	m
+<leader>w	vimrc	/^nnoremap <silent> <leader>w :update<CR>$/;"	m
+>	vimrc	/^xnoremap > >gv$/;"	m
+C	vimrc	/^nnoremap C "_C$/;"	m
 For Neovim	README.md	/^## For Neovim$/;"	s
 For Vim	README.md	/^## For Vim$/;"	s
+H	vimrc	/^nnoremap H ^$/;"	m
+H	vimrc	/^xnoremap H ^$/;"	m
 How to use	README.md	/^# How to use$/;"	c
 Introduction	README.md	/^# Introduction$/;"	c
+L	vimrc	/^nnoremap L g_$/;"	m
+L	vimrc	/^xnoremap L g_$/;"	m
+MyColors	vimrc	/^augroup MyColors$/;"	a
+MyFoldText	vimrc	/^function! MyFoldText()$/;"	f
+MyHighlights	vimrc	/^function! MyHighlights() abort$/;"	f
+OO	vimrc	/^nnoremap <expr> OO 'm`' . v:count1 . 'O<Esc>``'$/;"	m
+StatuslineTabWarning	vimrc	/^function! StatuslineTabWarning()$/;"	f
+StatuslineTrailingSpaceWarning	vimrc	/^function! StatuslineTrailingSpaceWarning()$/;"	f
+StripTrailingWhitespaces	vimrc	/^function! StripTrailingWhitespaces() abort$/;"	f
+VimFolds	vimrc	/^function! VimFolds(lnum)$/;"	f
+Y	vimrc	/^nnoremap Y y\$$/;"	m
+[L	vimrc	/^nnoremap [L :lfirst<CR>zv$/;"	m
+[Q	vimrc	/^nnoremap [Q :cfirst<CR>zv$/;"	m
+[l	vimrc	/^nnoremap [l :lprevious<CR>zv$/;"	m
+[q	vimrc	/^nnoremap [q :cprevious<CR>zv$/;"	m
+\\d	vimrc	/^nnoremap <silent> \\d :bprevious <bar> bdelete #<CR>$/;"	m
+\\x	vimrc	/^nnoremap<silent> \\x :windo lclose <bar> cclose<CR>$/;"	m
+]L	vimrc	/^nnoremap ]L :llast<CR>zv$/;"	m
+]Q	vimrc	/^nnoremap ]Q :clast<CR>zv$/;"	m
+]l	vimrc	/^nnoremap ]l :lnext<CR>zv$/;"	m
+]q	vimrc	/^nnoremap ]q :cnext<CR>zv$/;"	m
+^	vimrc	/^nnoremap <silent> ^ g^$/;"	m
+accurate_syn_highlight	vimrc	/^augroup accurate_syn_highlight$/;"	a
+c	vimrc	/^nnoremap c "_c$/;"	m
+cc	vimrc	/^nnoremap cc "_cc$/;"	m
+check_mixed_tabs	vimrc	/^augroup check_mixed_tabs$/;"	a
+check_trailing_space	vimrc	/^augroup check_trailing_space$/;"	a
+dynamic_smartcase	vimrc	/^    augroup dynamic_smartcase$/;"	a
+g:currentmode	vimrc	/^let g:currentmode={$/;"	v
+g:loaded_2html_plugin	vimrc	/^let g:loaded_2html_plugin = 1$/;"	v
+g:loaded_netrwPlugin	vimrc	/^let g:loaded_netrwPlugin = 1$/;"	v
+j	vimrc	/^nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')$/;"	m
+jk	vimrc	/^inoremap <silent> jk <Esc>$/;"	m
+k	vimrc	/^nnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')$/;"	m
+mapleader	vimrc	/^let mapleader = ','$/;"	v
+non_utf8_file_warn	vimrc	/^augroup non_utf8_file_warn$/;"	a
+number_toggle	vimrc	/^augroup number_toggle$/;"	a
+oo	vimrc	/^nnoremap <expr> oo 'm`' . v:count1 . 'o<Esc>``'$/;"	m
+q;	vimrc	/^nnoremap q; q:$/;"	m
+resume_edit_position	vimrc	/^augroup resume_edit_position$/;"	a
+term_settings	vimrc	/^    augroup term_settings$/;"	a
+text_file_width	vimrc	/^augroup text_file_width$/;"	a
+vimfile_setting	vimrc	/^augroup vimfile_setting$/;"	a
