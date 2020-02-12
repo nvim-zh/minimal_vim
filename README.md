@@ -20,7 +20,6 @@ To use this config for Neovim, use the following command:
 ```bash
 mkdir -p ~/.config/nvim && cd ~/.config/nvim
 git clone https://github.com/jdhao/minimal_vim.git .
-ln -s vimrc init.vim
 ```
 
 ## For Vim
