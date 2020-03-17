@@ -481,6 +481,11 @@ nnoremap cc "_cc
 
 " Remove trailing whitespace characters
 nnoremap <silent> <leader><Space> :call StripTrailingWhitespaces()<CR>
+
+" Clear highlighting
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
 "}
 
 "{ UI settings
