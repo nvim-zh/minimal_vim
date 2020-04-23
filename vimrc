@@ -432,6 +432,9 @@ inoremap <expr> <cr> ((pumvisible())?("\<C-Y>"):("\<cr>"))
 " Use <esc> to close auto-completion menu
 inoremap <expr> <esc> ((pumvisible())?("\<C-e>"):("\<esc>"))
 
+" Use <tab> to navigate down the completion menu.
+inoremap <expr> <tab>  pumvisible()?"\<C-n>":"\<tab>"
+
 " Edit and reload init.vim quickly
 nnoremap <silent> <leader>ev :edit $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :silent update $MYVIMRC <bar> source $MYVIMRC <bar>
