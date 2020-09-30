@@ -12,7 +12,7 @@ if !has('nvim')
     " see https://vi.stackexchange.com/questions/9131/i-cant-switch-to-cursor-in-insert-mode
     let &t_SI = "\<esc>[6 q"
     let &t_EI = "\<esc>[2 q"
-    if exists("&t_SR")
+    if exists('&t_SR')
         let &t_SR = "\<esc>[4 q"
     endif
 
@@ -103,7 +103,7 @@ set fileformats=unix,dos
 set concealcursor=nc
 
 " The way to show the result of substitution in real time for preview
-if exists("&inccommand")
+if exists('&inccommand')
     set inccommand=nosplit
 endif
 
@@ -146,8 +146,8 @@ set titlestring+=%{strftime('%Y-%m-%d\ %H:%M',getftime(expand('%')))}
 " For vim, we need to set up an undodir so that $HOME is not cluttered with
 " undo files.
 if !has('nvim')
-    if !isdirectory($HOME . "/.local/vim/undo")
-        call mkdir($HOME . "/.local/vim/undo", "p", 0700)
+    if !isdirectory($HOME . '/.local/vim/undo')
+        call mkdir($HOME . '/.local/vim/undo', 'p', 0700)
     endif
     set undodir=~/.local/vim/undo
 endif
@@ -159,7 +159,7 @@ set completeopt-=preview  " Disable the preview window
 
 " Settings for popup menu
 set pumheight=15  " Maximum number of items to show in popup menu
-if exists("&pumblend")
+if exists('&pumblend')
     set pumblend=5  " Pesudo blend effect for popup menu
 endif
 
@@ -249,7 +249,7 @@ let g:loaded_2html_plugin = 1
 "{ Auto commands
 " Do not use smart case in command line mode,
 " extracted from https://goo.gl/vCTYdK
-if exists("##CmdLineEnter")
+if exists('##CmdLineEnter')
     augroup dynamic_smartcase
         autocmd!
         autocmd CmdLineEnter : set nosmartcase
@@ -265,7 +265,7 @@ augroup text_file_width
     autocmd BufNewFile,BufRead *.md,*.MD,*.markdown setlocal textwidth=79
 augroup END
 
-if exists("##TermOpen")
+if exists('##TermOpen')
     augroup term_settings
         autocmd!
         " Do not use number and relative number for terminal inside nvim
@@ -455,7 +455,7 @@ xnoremap <C-H> :s/
 nnoremap <silent> <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Use Esc to quit builtin terminal
-if exists(":tnoremap")
+if exists(':tnoremap')
     tnoremap <ESC>   <C-\><C-n>
 endif
 
@@ -598,7 +598,7 @@ function! MyHighlights() abort
     hi Warnings ctermfg=208 ctermbg=234 cterm=reverse
 endfunction
 
-if exists("&termguicolors")
+if exists('&termguicolors')
     " If we want to use true colors, we must a color scheme which support true
     " colors, for example, https://github.com/sickill/vim-monokai
     set notermguicolors
@@ -662,7 +662,7 @@ set statusline+=%1*
 set statusline+=[%l/%L]
 
 " Column number
-set statusline+=\ col:%3c
+set statusline+=\ col:%2c
 
 " Warning about trailing spaces.
 set statusline+=%#Warnings#
@@ -684,7 +684,7 @@ augroup END
 
 " Find if trailing spaces exist.
 function! StatuslineTrailingSpaceWarning()
-    if !exists("b:statusline_trailing_space_warning")
+    if !exists('b:statusline_trailing_space_warning')
         " If the file is unmodifiable, do not warn this.
         if !&modifiable
             let b:statusline_trailing_space_warning = ''
@@ -703,7 +703,7 @@ endfunction
 
 " Find if they are mixed indentings.
 function! StatuslineTabWarning()
-    if !exists("b:statusline_tab_warning")
+    if !exists('b:statusline_tab_warning')
         " If the file is unmodifiable, do not warn this.
         if !&modifiable
             let b:statusline_trailing_space_warning = ''
