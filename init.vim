@@ -37,17 +37,17 @@ set pastetoggle=<F12>
 set splitbelow splitright
 
 " Time in milliseconds to wait for a mapped sequence to complete,
-" see https://goo.gl/vHvyu8 for more info
+" see https://unix.stackexchange.com/q/36882/221410 for more info
 set timeoutlen=500
 
 " For CursorHold events
 set updatetime=800
 
 " Clipboard settings, always use clipboard for all delete, yank, change, put
-" operation, see https://goo.gl/YAHBbJ
+" operation, see https://stackoverflow.com/q/30691466/6064933
 set clipboard+=unnamedplus
 
-" Disable creating swapfiles, see https://goo.gl/FA6m6h
+" Disable creating swapfiles, see https://stackoverflow.com/q/821902/6064933
 set noswapfile
 
 " General tab settings
@@ -81,7 +81,7 @@ set wildmode=list:full
 " Show current line where the cursor is
 set cursorline
 
-" Set a ruler at column 80, see https://goo.gl/vEkF5i
+" Set a ruler at column 80, see https://stackoverflow.com/q/2447109/6064933
 set colorcolumn=80
 
 " Minimum lines to keep above and below cursor when scrolling
@@ -132,10 +132,10 @@ set list listchars=tab:▸\ ,extends:❯,precedes:❮,nbsp:+
 " Auto-write the file based on some condition
 set autowrite
 
-" Show hostname, full path of file and last-mod time on the window title.
-" The meaning of the format str for strftime can be found in
-" http://tinyurl.com/l9nuj4a. The function to get lastmod time is drawn from
-" http://tinyurl.com/yxd23vo8
+" Show hostname, full path of file and last-mod time on the window title. The
+" meaning of the format str for strftime can be found in
+" http://man7.org/linux/man-pages/man3/strftime.3.html. The function to get
+" lastmod time is drawn from https://stackoverflow.com/q/8426736/6064933
 set title
 set titlestring=
 set titlestring+=%(%{hostname()}\ \ %)
@@ -169,21 +169,21 @@ set complete+=k,kspell complete-=w complete-=b complete-=u complete-=t
 set spelllang=en,cjk  " Spell languages
 
 " Align indent to next multiple value of shiftwidth. For its meaning,
-" see http://tinyurl.com/y5n87a6m
+" see http://vim.1045645.n5.nabble.com/shiftround-option-td5712100.html
 set shiftround
 
 " Virtual edit is useful for visual block edit
 set virtualedit=block
 
 " Correctly break multi-byte characters such as CJK,
-" see http://tinyurl.com/y4sq6vf3
+" see https://stackoverflow.com/q/32669814/6064933
 set formatoptions+=mM
 
 " Tilde (~) is an operator, thus must be followed by motions like `e` or `w`.
 set tildeop
 
-" Do not add two space after a period when joining lines or formatting texts,
-" see https://tinyurl.com/y3yy9kov
+" Do not add two spaces after a period when joining lines or formatting texts,
+" see https://stackoverflow.com/q/4760428/6064933
 set nojoinspaces
 
 " Text after this column is not highlighted
@@ -248,7 +248,7 @@ let g:loaded_2html_plugin = 1
 
 "{ Auto commands
 " Do not use smart case in command line mode,
-" extracted from https://goo.gl/vCTYdK
+" extracted from https://vi.stackexchange.com/q/16509/15292
 if exists('##CmdLineEnter')
     augroup dynamic_smartcase
         autocmd!
@@ -356,14 +356,14 @@ nnoremap [Q :cfirst<CR>zv
 nnoremap ]Q :clast<CR>zv
 
 " Close location list or quickfix list if they are present,
-" see https://goo.gl/uXncnS
+" see https://superuser.com/q/355325/736190
 nnoremap<silent> \x :windo lclose <bar> cclose<CR>
 
 " Close a buffer and switching to another buffer, do not close the
-" window, see https://goo.gl/Wd8yZJ
+" window, see https://stackoverflow.com/q/4465095/6064933
 nnoremap <silent> \d :bprevious <bar> bdelete #<CR>
 
-" Toggle search highlight, see https://goo.gl/3H85hh
+" Toggle search highlight, see https://stackoverflow.com/q/9054780/6064933
 nnoremap <silent><expr> <Leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 
 " Insert a blank line below or above current line (do not move the cursor),
@@ -393,7 +393,7 @@ nnoremap <silent> ^ g^
 nnoremap <silent> 0 g0
 
 " Do not include white space characters when using $ in visual mode,
-" see https://goo.gl/PkuZox
+" see https://vi.stackexchange.com/a/18571/15292
 xnoremap $ g_
 
 " Jump to matching pairs easily in normal mode
@@ -406,7 +406,7 @@ nnoremap L g_
 xnoremap L g_
 
 " Resize windows using <Alt> and h,j,k,l, inspiration from
-" https://goo.gl/vVQebo (bottom page).
+" https://vim.fandom.com/wiki/Fast_window_resizing_with_plus/minus_keys (bottom page).
 " If you enable mouse support, shorcuts below may not be necessary.
 nnoremap <silent> <M-h> <C-w><
 nnoremap <silent> <M-l> <C-w>>
@@ -421,13 +421,14 @@ nnoremap <silent> <M-down> <C-w>j
 nnoremap <silent> <M-up> <C-w>k
 
 " Continuous visual shifting (does not exit Visual mode), `gv` means
-" to reselect previous visual area, see https://goo.gl/m1UeiT
+" to reselect previous visual area, see https://superuser.com/q/310417/736190
 xnoremap < <gv
 xnoremap > >gv
 
 " When completion menu is shown, use <cr> to select an item
 " and do not add an annoying newline. Otherwise, <enter> is what it is.
-" For more info , see https://goo.gl/KTHtrr and https://goo.gl/MH7w3b
+" For more info , see https://superuser.com/q/246641/736190 and
+" https://unix.stackexchange.com/q/162528/221410
 inoremap <expr> <cr> ((pumvisible())?("\<C-Y>"):("\<cr>"))
 " Use <esc> to close auto-completion menu
 inoremap <expr> <esc> ((pumvisible())?("\<C-e>"):("\<esc>"))
@@ -467,7 +468,7 @@ inoremap <silent> <F11> <C-O>:set spell!<cr>
 inoremap <S-Tab> <ESC><<i
 
 " Change text without putting the text into register,
-" see http://tinyurl.com/y2ap4h69
+" see https://stackoverflow.com/q/54255/6064933
 nnoremap c "_c
 nnoremap C "_C
 nnoremap cc "_cc
