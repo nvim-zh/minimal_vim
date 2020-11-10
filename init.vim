@@ -620,7 +620,7 @@ let g:currentmode={
        \ 'n'  : 'NORMAL ',
        \ 'v'  : 'VISUAL ',
        \ 'V'  : 'V·Line ',
-       \ '' : 'V·Block ',
+       \ "\<C-V>" : 'V·Block ',
        \ 'i'  : 'INSERT ',
        \ 'R'  : 'R ',
        \ 'Rv' : 'V·Replace ',
