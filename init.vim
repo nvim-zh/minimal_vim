@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 "{ Builtin optional plugins
 " Activate matchit plugin
 runtime! macros/matchit.vim
@@ -45,6 +48,7 @@ set updatetime=800
 
 " Clipboard settings, always use clipboard for all delete, yank, change, put
 " operation, see https://stackoverflow.com/q/30691466/6064933
+set clipboard+=unnamed
 set clipboard+=unnamedplus
 
 " Disable creating swapfiles, see https://stackoverflow.com/q/821902/6064933
@@ -68,7 +72,6 @@ set ignorecase smartcase
 " File and script encoding settings for vim
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-scriptencoding utf-8
 
 " Break line at predefined characters
 set linebreak
@@ -196,6 +199,8 @@ set wildmenu
 
 " Do not use corsorcolumn
 set nocursorcolumn
+
+set backspace=indent,eol,start  " Use backsapce to delete
 "}
 
 "{ Functions
@@ -488,10 +493,17 @@ nnoremap <left> :echoerr "Don't use arrow keys, use H, J, K, L instead!"<CR>
 "}
 
 "{ UI settings
-augroup MyColors
-    autocmd!
-    autocmd ColorScheme * call MyHighlights()
-augroup END
+if !has('gui_running')
+    augroup MyColors
+        autocmd!
+        autocmd ColorScheme * call MyHighlights()
+    augroup END
+else
+    set guioptions-=T
+    set guioptions-=m
+    set guioptions-=r
+    set guioptions-=L
+endif
 
 function! MyHighlights() abort
     highlight clear
@@ -613,8 +625,8 @@ set background=dark
 colorscheme desert
 
 " Highlight trailing spaces and leading tabs
-call matchadd('Warnings', '\s\+$')
-call matchadd('Warnings', '^\t\+')
+call matchadd('WarningMsg', '\s\+$')
+call matchadd('WarningMsg', '^\t\+')
 
 " statusline settings
 let g:currentmode={
@@ -634,7 +646,7 @@ set statusline+=%1*
 set statusline+=\ %{toupper(g:currentmode[mode()])}
 set statusline+=%{&spell?'[SPELL]':''}
 
-set statusline+=%#Warnings#
+set statusline+=%#WarningMsg#
 set statusline+=%{&paste?'[PASTE]':''}
 
 set statusline+=%2*
@@ -653,14 +665,14 @@ set statusline+=%=
 set statusline+=%{&filetype!=#''?&filetype.'\ ':'none\ '}
 
 " Encoding & Fileformat
-set statusline+=%#Warnings#
+set statusline+=%#WarningMsg#
 set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
 
 set statusline+=%2*
 set statusline+=%-7([%{&fileformat}]%)
 
 " Warning about byte order
-set statusline+=%#Warnings#
+set statusline+=%#WarningMsg#
 set statusline+=%{&bomb?'[BOM]':''}
 
 set statusline+=%1*
@@ -671,7 +683,7 @@ set statusline+=[%l/%L]
 set statusline+=\ col:%2c
 
 " Warning about trailing spaces.
-set statusline+=%#Warnings#
+set statusline+=%#WarningMsg#
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 set statusline+=%{StatuslineTabWarning()}
 
