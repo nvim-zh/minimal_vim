@@ -23,6 +23,9 @@ if !has('nvim')
     set t_Co=256
 endif
 
+" Use English as default
+language en_US.utf-8
+
 filetype plugin indent on
 syntax enable
 
