@@ -641,6 +641,7 @@ let g:currentmode={
        \ 'R'  : 'R ',
        \ 'Rv' : 'V·Replace ',
        \ 'c'  : 'Command ',
+       \ 't'  : 'TERMINAL'
        \}
 
 set statusline=
