@@ -627,9 +627,13 @@ endif
 set background=dark
 colorscheme desert
 
-" Highlight trailing spaces and leading tabs
-call matchadd('WarningMsg', '\s\+$')
-call matchadd('WarningMsg', '^\t\+')
+" Highlight trailing white spaces and leading tabs
+if has('gui_running')
+    hi Warnings guifg=#ff0000 guibg=yellow
+endif
+
+call matchadd("Warnings", '\s\+$')
+call matchadd("Warnings", '^\t\+')
 
 " statusline settings
 let g:currentmode={
