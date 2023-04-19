@@ -25,6 +25,8 @@ git clone https://github.com/jdhao/minimal_vim.git .
 ## For Vim
 
 ```bash
+# to avoid default conf interfering with this conf
+mv ~/.vimrc ~/.vimrc.bak
 mkdir -p ~/.vim && cd ~/.vim
 git clone https://github.com/jdhao/minimal_vim.git .
 ```
